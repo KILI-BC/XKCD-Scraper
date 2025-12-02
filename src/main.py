@@ -16,13 +16,14 @@ def save_comic(url):
     file_name = re.search(re.compile(r"[^/]+$"), image_url)
     file_name = image_url[file_name.start() : file_name.end()]
     # print(file_name)
-    save_path = "comics" + os.sep + file_name
-    # img.download_image(image_url, save_path)
+    save_path = ".." + os.sep + "comics" + os.sep + file_name
+    # since this is a relative path the previous line only works when executing the main file from the src folder
+    img.download_image(image_url, save_path)
     return file_name
 
 
 def save_dict():
-    with open("names.csv", "at") as f:
+    with open(".." + os.sep + "names.csv", "at") as f:
         f.write("sep=;\n")
         f.write(f"number; filename; safe title; transcript; alt text\n")
         for key, value in dict.items():
